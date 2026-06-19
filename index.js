@@ -116,21 +116,6 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/active-challenges", async (req, res) => {
-      const currentDate = new Date().toISOString();
-
-      const result = await challengeCollection
-        .find({
-          startDate: { $lte: currentDate },
-          endDate: { $gte: currentDate },
-        })
-        .sort({ startDate: -1 })
-        .limit(6)
-        .toArray();
-
-      res.send(result);
-    });
-
     app.post("/challenges", async (req, res) => {
       const data = req.body;
       const result = await challengeCollection.insertOne(data);
