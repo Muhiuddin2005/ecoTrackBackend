@@ -68,8 +68,8 @@ async function run() {
     });
     app.get("/featured-events", async (req, res) => {
       const result = await eventsCollection
-        .find({ date: { $gte: new Date().toISOString() } })
-        .sort({ date: 1 })
+        .find()
+        .sort({ date: -1 })
         .limit(3)
         .toArray();
       res.send(result);
