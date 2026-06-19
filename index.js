@@ -66,11 +66,11 @@ async function run() {
         .toArray();
       res.send(result);
     });
-    app.get("/upcoming-events", async (req, res) => {
+    app.get("/featured-events", async (req, res) => {
       const result = await eventsCollection
         .find({ date: { $gte: new Date().toISOString() } })
         .sort({ date: 1 })
-        .limit(4)
+        .limit(3)
         .toArray();
       res.send(result);
     });
